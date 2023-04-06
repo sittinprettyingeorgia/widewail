@@ -8,7 +8,7 @@ services:
       - SERVER_PORT=3000
       - SPRING_DATASOURCE_USERNAME=root
       - SPRING_DATASOURCE_PASSWORD=interview
-      - SPRING_DATASOURCE_URL=jdbc:mysql://db:33060/interview
+      - SPRING_DATASOURCE_URL=jdbc:mysql://db:3306/interview?allowPublicKeyRetrieval=true&useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&useUnicode=yes&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&autoReconnect=true&failOverReadOnly=false&maxReconnects=10&connectTimeout=3000&socketTimeout=120000
     volumes:
       - ./:/app
       - ~/.m2:/root/.m2
@@ -19,6 +19,8 @@ services:
 
   db:
     image: mysql:8.0.25
+    ports:
+      - "4001:3306"
     platform: linux/x86_64
     command: "--character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci"
     volumes:

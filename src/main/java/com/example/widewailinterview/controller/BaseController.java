@@ -4,6 +4,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 
@@ -20,10 +21,13 @@ public class BaseController {
     }
 
     protected ResponseEntity<Object> handleResponse(Object body) {
-        Map<String, Object> result = Map.of("success",true);
+        Map<String, Object> result = new HashMap<>();
+        result.put("success",true);
+
         if(body != null){
             result.put("result",body);
         }
+
         return ResponseEntity.status(200).body(result);
     }
 }
